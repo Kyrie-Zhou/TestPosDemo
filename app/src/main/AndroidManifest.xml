@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.mydemopos">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.pax.permission.PED" />
+    <uses-permission android:name="com.pax.permission.MAGCARD" />
+    <uses-permission android:name="com.pax.permission.PRINTER" /> <!-- 系统版本不同 使用前台服务需要有这个权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyDemoPos"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".activity.TestActivityPin"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AllRecordsActivity"
+            android:exported="true"
+            android:label="RRCORDS" />
+
+        <provider
+            android:name=".provider.TransactionContentProvider"
+            android:authorities="com.example.mydemopos.provider.TransactionContentProvider"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".activity.HomeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.DisplayInfoActivity"
+            android:exported="true"
+            android:label="TRANSACTION RECEIPT">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true"
+            android:label="CARD INFO" />
+        <activity
+            android:name=".activity.TipActivity"
+            android:exported="false"
+            android:label="TIP" />
+        <activity
+            android:name=".activity.SaleActivity"
+            android:exported="true"
+            android:label="SALE" />
+        <activity
+            android:name=".activity.PINActivity"
+            android:exported="true"
+            android:label="PIN" />
+
+        <service
+            android:name=".service.MagCardService"
+            android:enabled="true" />
+    </application>
+
+</manifest>
